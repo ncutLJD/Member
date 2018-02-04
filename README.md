@@ -1,5 +1,6 @@
 # Member
 新版会员项目
+修改日期：2018-2-4
 
     用的框架是springboot+mybatis
     数据源用的阿里巴巴的durid
@@ -16,7 +17,9 @@
         
 
 项目运行：
-		在xinqushi-manager-web中运行Application.java 即可
+在xinqushi-manager-web中运行Application.java 即可
+
+今天先写到这 睡觉去了。
 
 刚开始写springboot的代码 有的还在摸索。代码写的也不是特别好。希望多多指教 共同进步。
 
