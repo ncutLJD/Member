@@ -6,7 +6,7 @@
     项目的模块划分
     xinqushi-parent：父工程，其打包方式是pom，主要管理jar包的版本号。项目中的所有工程都应该继承父工程。
     xinqushi-common：存放一些通用的工具类、通用的pojo。其打包方式为jar，被其他的工程所依赖。
-  	xinqushi-manager：
+		xinqushi-manager：
 				xinqushi-manager-admin：管理员模块
 				xinqushi-manager-user： vip用户模块
 				xinqushi-manager-clue： 跟踪用户模块
