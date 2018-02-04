@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xinqushi.mapper.ClueMapper">
+  <resultMap id="BaseResultMap" type="com.xinqushi.pojo.Clue">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="aid" jdbcType="INTEGER" property="aid" />
+    <result column="num" jdbcType="VARCHAR" property="num" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="qq" jdbcType="VARCHAR" property="qq" />
+    <result column="realName" jdbcType="VARCHAR" property="realName" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="diploma" jdbcType="VARCHAR" property="diploma" />
+    <result column="btime" jdbcType="TIMESTAMP" property="btime" />
+    <result column="etime" jdbcType="TIMESTAMP" property="etime" />
+    <result column="type" jdbcType="BIT" property="type" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="graduateDate" jdbcType="TIMESTAMP" property="graduateDate" />
+    <result column="flag" jdbcType="TINYINT" property="flag" />
+    <result column="exnum" jdbcType="VARCHAR" property="exnum" />
+    <result column="summaryflag" jdbcType="BIT" property="summaryflag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, aid, num, sex, qq, realName, school, diploma, btime, etime, type, phone, graduateDate, 
+    flag, exnum, summaryflag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from clue
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getExist" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from clue
+    where num = #{queryString} or phone = #{queryString}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from clue
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xinqushi.pojo.Clue">
+    insert into clue (id, aid, num, 
+      sex, qq, realName, 
+      school, diploma, btime, 
+      etime, type, phone, graduateDate, 
+      flag, exnum, summaryflag
+      )
+    values (#{id,jdbcType=INTEGER}, #{aid,jdbcType=INTEGER}, #{num,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
+      #{school,jdbcType=VARCHAR}, #{diploma,jdbcType=VARCHAR}, #{btime,jdbcType=TIMESTAMP}, 
+      #{etime,jdbcType=TIMESTAMP}, #{type,jdbcType=BIT}, #{phone,jdbcType=VARCHAR}, #{graduateDate,jdbcType=TIMESTAMP}, 
+      #{flag,jdbcType=TINYINT}, #{exnum,jdbcType=VARCHAR}, #{summaryflag,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xinqushi.pojo.Clue">
+    insert into clue
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="aid != null">
+        aid,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="qq != null">
+        qq,
+      </if>
+      <if test="realName != null">
+        realName,
+      </if>
+      <if test="school != null">
+        school,
+      </if>
+      <if test="diploma != null">
+        diploma,
+      </if>
+      <if test="btime != null">
+        btime,
+      </if>
+      <if test="etime != null">
+        etime,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="graduateDate != null">
+        graduateDate,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="exnum != null">
+        exnum,
+      </if>
+      <if test="summaryflag != null">
+        summaryflag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="aid != null">
+        #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="diploma != null">
+        #{diploma,jdbcType=VARCHAR},
+      </if>
+      <if test="btime != null">
+        #{btime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="etime != null">
+        #{etime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=BIT},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="graduateDate != null">
+        #{graduateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=TINYINT},
+      </if>
+      <if test="exnum != null">
+        #{exnum,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryflag != null">
+        #{summaryflag,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xinqushi.pojo.Clue">
+    update clue
+    <set>
+      <if test="aid != null">
+        aid = #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        realName = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="diploma != null">
+        diploma = #{diploma,jdbcType=VARCHAR},
+      </if>
+      <if test="btime != null">
+        btime = #{btime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="etime != null">
+        etime = #{etime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=BIT},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="graduateDate != null">
+        graduateDate = #{graduateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=TINYINT},
+      </if>
+      <if test="exnum != null">
+        exnum = #{exnum,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryflag != null">
+        summaryflag = #{summaryflag,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xinqushi.pojo.Clue">
+    update clue
+    set aid = #{aid,jdbcType=INTEGER},
+      num = #{num,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      realName = #{realName,jdbcType=VARCHAR},
+      school = #{school,jdbcType=VARCHAR},
+      diploma = #{diploma,jdbcType=VARCHAR},
+      btime = #{btime,jdbcType=TIMESTAMP},
+      etime = #{etime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=BIT},
+      phone = #{phone,jdbcType=VARCHAR},
+      graduateDate = #{graduateDate,jdbcType=TIMESTAMP},
+      flag = #{flag,jdbcType=TINYINT},
+      exnum = #{exnum,jdbcType=VARCHAR},
+      summaryflag = #{summaryflag,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

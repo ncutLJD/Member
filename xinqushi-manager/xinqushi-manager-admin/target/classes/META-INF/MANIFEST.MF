@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: xinqushi-manager-admin
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: 96260
+Implementation-Vendor-Id: com.xinqushi
+Build-Jdk: 1.8.0_05
+Implementation-URL: http://projects.spring.io/spring-boot/xinqushi-par
+ ent/xinqushi-manager/xinqushi-manager-admin/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

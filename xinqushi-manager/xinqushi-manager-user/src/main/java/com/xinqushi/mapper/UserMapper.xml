@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xinqushi.mapper.UserMapper">
+	<resultMap id="BaseResultMap" type="com.xinqushi.pojo.User">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="pwd" jdbcType="VARCHAR" property="pwd" />
+		<result column="salt" jdbcType="VARCHAR" property="salt" />
+		<result column="time" jdbcType="TIMESTAMP" property="time" />
+		<result column="noticeTime" jdbcType="TIMESTAMP" property="noticeTime" />
+		<result column="root" jdbcType="INTEGER" property="root" />
+	</resultMap>
+	<resultMap id="MemberUserResultMap" type="com.xinqushi.pojo.User">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="pwd" jdbcType="VARCHAR" property="pwd" />
+		<result column="salt" jdbcType="VARCHAR" property="salt" />
+		<collection property=
+		"member" ofType="com.xinqushi.pojo.Member">
+			<id column="mid" jdbcType="INTEGER" property="id"></id>
+			<result column="uid" jdbcType="VARCHAR" property="uid"></result>
+			<result column="mname" jdbcType="VARCHAR" property="name"></result>
+			<result column="mobile" jdbcType="VARCHAR" property="mobile"></result>
+		</collection>
+	</resultMap>
+
+
+	<sql id="Base_Column_List">
+		id, name, pwd, salt, time, noticeTime, root
+	</sql>
+	<select id="getExist" parameterType="java.lang.String"
+		resultMap="MemberUserResultMap">
+		select
+			u.id,
+			u.name,
+			u.pwd,
+			u.salt,
+			m.id mid,
+			m.uid uid,
+			m.name mname,
+			m.mobile mobile
+		from 
+			user u
+		left join
+			member m
+		on
+			u.id = m.uid 
+		where
+			(u.name = #{queryString} or m.mobile = #{queryString})
+	</select>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from user
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.xinqushi.pojo.User">
+		insert into user (id, name, pwd,
+		salt, time, noticeTime,
+		root)
+		values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		#{pwd,jdbcType=VARCHAR},
+		#{salt,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, #{noticeTime,jdbcType=TIMESTAMP},
+		#{root,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.xinqushi.pojo.User">
+		insert into user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="pwd != null">
+				pwd,
+			</if>
+			<if test="salt != null">
+				salt,
+			</if>
+			<if test="time != null">
+				time,
+			</if>
+			<if test="noticeTime != null">
+				noticeTime,
+			</if>
+			<if test="root != null">
+				root,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="pwd != null">
+				#{pwd,jdbcType=VARCHAR},
+			</if>
+			<if test="salt != null">
+				#{salt,jdbcType=VARCHAR},
+			</if>
+			<if test="time != null">
+				#{time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="noticeTime != null">
+				#{noticeTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="root != null">
+				#{root,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.xinqushi.pojo.User">
+		update user
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="pwd != null">
+				pwd = #{pwd,jdbcType=VARCHAR},
+			</if>
+			<if test="salt != null">
+				salt = #{salt,jdbcType=VARCHAR},
+			</if>
+			<if test="time != null">
+				time = #{time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="noticeTime != null">
+				noticeTime = #{noticeTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="root != null">
+				root = #{root,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.xinqushi.pojo.User">
+		update user
+		set name = #{name,jdbcType=VARCHAR},
+		pwd = #{pwd,jdbcType=VARCHAR},
+		salt = #{salt,jdbcType=VARCHAR},
+		time = #{time,jdbcType=TIMESTAMP},
+		noticeTime = #{noticeTime,jdbcType=TIMESTAMP},
+		root = #{root,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

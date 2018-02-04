@@ -1,0 +1,5 @@
+com\xinqushi\interceptor\MyWebMvcConfigurer.class
+com\xinqushi\interceptor\MyInterceptor.class
+com\xinqushi\Application.class
+com\xinqushi\MemberApplication.class
+com\xinqushi\controller\IndexController.class

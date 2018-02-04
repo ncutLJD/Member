@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xinqushi.mapper.ExperienceMapper">
+	<resultMap id="BaseResultMap" type="com.xinqushi.pojo.Experience">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="num" jdbcType="VARCHAR" property="num" />
+		<result column="password" jdbcType="VARCHAR" property="password" />
+		<result column="salt" jdbcType="VARCHAR" property="salt" />
+		<result column="noticeTime" jdbcType="TIMESTAMP" property="noticeTime" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="sex" jdbcType="VARCHAR" property="sex" />
+		<result column="phone" jdbcType="VARCHAR" property="phone" />
+		<result column="student" jdbcType="BIT" property="student" />
+		<result column="school" jdbcType="VARCHAR" property="school" />
+		<result column="company" jdbcType="VARCHAR" property="company" />
+		<result column="graduateDate" jdbcType="DATE" property="graduateDate" />
+		<result column="province" jdbcType="VARCHAR" property="province" />
+		<result column="beginTime" jdbcType="TIMESTAMP" property="beginTime" />
+		<result column="endTime" jdbcType="TIMESTAMP" property="endTime" />
+		<result column="aid" jdbcType="INTEGER" property="aid" />
+		<result column="flag" jdbcType="INTEGER" property="flag" />
+		<result column="memo" jdbcType="VARCHAR" property="memo" />
+		<result column="summaryflag" jdbcType="BIT" property="summaryflag" />
+		<result column="seat_provid" jdbcType="INTEGER" property="seat_provid" />
+		<result column="qq" jdbcType="VARCHAR" property="qq" />
+		<result column="schProId" jdbcType="INTEGER" property="schProId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, num, password, salt, noticeTime, name, sex, phone, student, school,
+		company,
+		graduateDate, province, beginTime, endTime, aid, flag, memo, summaryflag,
+		seat_provid,
+		qq, schProId
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from experience
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="getExist" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from experience
+		where num = #{queryString} or phone = #{queryString}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from experience
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.xinqushi.pojo.Experience">
+		insert into experience (id, num, password,
+		salt, noticeTime, name,
+		sex, phone, student, school,
+		company, graduateDate, province,
+		beginTime, endTime, aid,
+		flag, memo, summaryflag,
+		seat_provid, qq, schProId
+		)
+		values (#{id,jdbcType=INTEGER}, #{num,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR},
+		#{salt,jdbcType=VARCHAR}, #{noticeTime,jdbcType=TIMESTAMP}, #{name,jdbcType=VARCHAR},
+		#{sex,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+		#{student,jdbcType=BIT}, #{school,jdbcType=VARCHAR},
+		#{company,jdbcType=VARCHAR}, #{graduateDate,jdbcType=DATE},
+		#{province,jdbcType=VARCHAR},
+		#{beginTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{aid,jdbcType=INTEGER},
+		#{flag,jdbcType=INTEGER}, #{memo,jdbcType=VARCHAR},
+		#{summaryflag,jdbcType=BIT},
+		#{seat_provid,jdbcType=INTEGER}, #{qq,jdbcType=VARCHAR}, #{schProId,jdbcType=INTEGER}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.xinqushi.pojo.Experience">
+		insert into experience
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="num != null">
+				num,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="salt != null">
+				salt,
+			</if>
+			<if test="noticeTime != null">
+				noticeTime,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="student != null">
+				student,
+			</if>
+			<if test="school != null">
+				school,
+			</if>
+			<if test="company != null">
+				company,
+			</if>
+			<if test="graduateDate != null">
+				graduateDate,
+			</if>
+			<if test="province != null">
+				province,
+			</if>
+			<if test="beginTime != null">
+				beginTime,
+			</if>
+			<if test="endTime != null">
+				endTime,
+			</if>
+			<if test="aid != null">
+				aid,
+			</if>
+			<if test="flag != null">
+				flag,
+			</if>
+			<if test="memo != null">
+				memo,
+			</if>
+			<if test="summaryflag != null">
+				summaryflag,
+			</if>
+			<if test="seat_provid != null">
+				seat_provid,
+			</if>
+			<if test="qq != null">
+				qq,
+			</if>
+			<if test="schProId != null">
+				schProId,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="num != null">
+				#{num,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="salt != null">
+				#{salt,jdbcType=VARCHAR},
+			</if>
+			<if test="noticeTime != null">
+				#{noticeTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="student != null">
+				#{student,jdbcType=BIT},
+			</if>
+			<if test="school != null">
+				#{school,jdbcType=VARCHAR},
+			</if>
+			<if test="company != null">
+				#{company,jdbcType=VARCHAR},
+			</if>
+			<if test="graduateDate != null">
+				#{graduateDate,jdbcType=DATE},
+			</if>
+			<if test="province != null">
+				#{province,jdbcType=VARCHAR},
+			</if>
+			<if test="beginTime != null">
+				#{beginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endTime != null">
+				#{endTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="aid != null">
+				#{aid,jdbcType=INTEGER},
+			</if>
+			<if test="flag != null">
+				#{flag,jdbcType=INTEGER},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="summaryflag != null">
+				#{summaryflag,jdbcType=BIT},
+			</if>
+			<if test="seat_provid != null">
+				#{seat_provid,jdbcType=INTEGER},
+			</if>
+			<if test="qq != null">
+				#{qq,jdbcType=VARCHAR},
+			</if>
+			<if test="schProId != null">
+				#{schProId,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.xinqushi.pojo.Experience">
+		update experience
+		<set>
+			<if test="num != null">
+				num = #{num,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="salt != null">
+				salt = #{salt,jdbcType=VARCHAR},
+			</if>
+			<if test="noticeTime != null">
+				noticeTime = #{noticeTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="student != null">
+				student = #{student,jdbcType=BIT},
+			</if>
+			<if test="school != null">
+				school = #{school,jdbcType=VARCHAR},
+			</if>
+			<if test="company != null">
+				company = #{company,jdbcType=VARCHAR},
+			</if>
+			<if test="graduateDate != null">
+				graduateDate = #{graduateDate,jdbcType=DATE},
+			</if>
+			<if test="province != null">
+				province = #{province,jdbcType=VARCHAR},
+			</if>
+			<if test="beginTime != null">
+				beginTime = #{beginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endTime != null">
+				endTime = #{endTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="aid != null">
+				aid = #{aid,jdbcType=INTEGER},
+			</if>
+			<if test="flag != null">
+				flag = #{flag,jdbcType=INTEGER},
+			</if>
+			<if test="memo != null">
+				memo = #{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="summaryflag != null">
+				summaryflag = #{summaryflag,jdbcType=BIT},
+			</if>
+			<if test="seat_provid != null">
+				seat_provid = #{seat_provid,jdbcType=INTEGER},
+			</if>
+			<if test="qq != null">
+				qq = #{qq,jdbcType=VARCHAR},
+			</if>
+			<if test="schProId != null">
+				schProId = #{schProId,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.xinqushi.pojo.Experience">
+		update experience
+		set num = #{num,jdbcType=VARCHAR},
+		password = #{password,jdbcType=VARCHAR},
+		salt = #{salt,jdbcType=VARCHAR},
+		noticeTime = #{noticeTime,jdbcType=TIMESTAMP},
+		name = #{name,jdbcType=VARCHAR},
+		sex = #{sex,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR},
+		student = #{student,jdbcType=BIT},
+		school = #{school,jdbcType=VARCHAR},
+		company = #{company,jdbcType=VARCHAR},
+		graduateDate = #{graduateDate,jdbcType=DATE},
+		province = #{province,jdbcType=VARCHAR},
+		beginTime = #{beginTime,jdbcType=TIMESTAMP},
+		endTime = #{endTime,jdbcType=TIMESTAMP},
+		aid = #{aid,jdbcType=INTEGER},
+		flag = #{flag,jdbcType=INTEGER},
+		memo = #{memo,jdbcType=VARCHAR},
+		summaryflag = #{summaryflag,jdbcType=BIT},
+		seat_provid = #{seat_provid,jdbcType=INTEGER},
+		qq = #{qq,jdbcType=VARCHAR},
+		schProId = #{schProId,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>
